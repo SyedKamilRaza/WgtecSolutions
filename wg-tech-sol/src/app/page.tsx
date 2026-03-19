@@ -1,0 +1,57 @@
+'use client';
+
+import { useEffect, useState } from "react";
+import { OurServicesSection } from "./components/service";
+import Components from "./components/companies";
+import FAQ from "./components/faq";
+import ThankYouSection from "./components/thankYouSection";
+import TestimonialsCard from './components/clientsCard';
+import Hero from "./components/hero";
+import { getHomeData } from "@/api/module/home";
+import { HomeData } from "./home/types";
+
+export default function Home() {
+  const [homeData, setHomeData] = useState<HomeData>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    handleGetHomeData();
+  }, []);
+
+  const handleGetHomeData = async () => {
+    try {
+      const response = await getHomeData();
+      if (response.status === 200 || response.status === 201) {
+        const data = response?.data?.data || response?.data || {};
+        console.log("Home API Response:", data);
+        console.log("Reviews:", data.reviews);
+        setHomeData(data);
+      }
+    } catch (error) {
+      console.error("Error fetching Home data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  console.log(homeData.services, "homeDatahomeData");
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <Hero />
+      <OurServicesSection services={homeData.services} />
+      <Components advertisements={homeData.advertisements || []} />
+      <TestimonialsCard reviews={homeData.reviews} />
+      <FAQ faqs={homeData.faqs} />
+      <ThankYouSection />
+    </>
+  );
+}

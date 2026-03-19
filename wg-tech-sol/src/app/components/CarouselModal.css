@@ -1,0 +1,128 @@
+/* 3D Carousel Modal Styles */
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.mySwiper .swiper-wrapper {
+  align-items: center;
+  display: flex;
+}
+
+.mySwiper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 320px;
+  height: 240px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: none !important;
+}
+
+.mySwiper .swiper-slide-active {
+  transform: scale(1.6);
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.mySwiper .swiper-slide {
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mySwiper .swiper-slide:hover {
+  transform: scale(1.1);
+}
+
+.mySwiper .swiper-slide-active:hover {
+  transform: scale(1.7);
+  box-shadow: none;
+}
+
+/* Hide all Swiper shadow elements */
+.mySwiper .swiper-slide-shadow-left,
+.mySwiper .swiper-slide-shadow-right,
+.mySwiper .swiper-slide-shadow-top,
+.mySwiper .swiper-slide-shadow-bottom {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.mySwiper .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.mySwiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  background: white;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Custom navigation buttons are now handled by React Icons */
+
+/* Full Screen View Styles */
+.full-screen-view {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.full-screen-content {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Enhanced hover effects for carousel items */
+.mySwiper .swiper-slide:hover .swiper-slide-shadow-left,
+.mySwiper .swiper-slide:hover .swiper-slide-shadow-right {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mySwiper .swiper-slide {
+    width: 280px;
+    height: 210px;
+  }
+  
+  .mySwiper .swiper-slide-active {
+    transform: scale(1.4);
+    box-shadow: none;
+  }
+  
+  .mySwiper .swiper-slide-active:hover {
+    transform: scale(1.5);
+    box-shadow: none;
+  }
+}
